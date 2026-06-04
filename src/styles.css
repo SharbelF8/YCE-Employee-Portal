@@ -224,3 +224,13 @@ textarea{min-height:82px;resize:none}
     font-size:16px;
   }
 }
+@media (max-width: 760px) {
+  .mobile-admin-topbar {
+    padding-top: max(12px, env(safe-area-inset-top));
+    padding-bottom: 10px;
+  }
+
+  .admin-main {
+    padding-top: calc(110px + env(safe-area-inset-top));
+  }
+}
