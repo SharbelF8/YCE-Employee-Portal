@@ -344,3 +344,28 @@ body,
     rgba(1,7,10,.99)
   ) !important;
 }
+
+/* Final mobile bottom background fix */
+@media (max-width: 760px) {
+  html,
+  body,
+  #root,
+  .appframe,
+  .login {
+    background: linear-gradient(
+      180deg,
+      rgba(3,17,24,.97),
+      rgba(1,7,10,.99)
+    ) !important;
+    min-height: 100dvh !important;
+  }
+
+  .appframe {
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .login {
+    height: 100dvh !important;
+  }
+}
