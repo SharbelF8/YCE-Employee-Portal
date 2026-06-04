@@ -234,3 +234,19 @@ textarea{min-height:82px;resize:none}
     padding-top: calc(110px + env(safe-area-inset-top));
   }
 }
+
+/* Admin page title fix */
+.admin-main h1,
+.admin-main h2,
+.admin-main h3 {
+  color: white !important;
+}
+
+/* Center admin sidebar logo */
+.admin-side .logo {
+  display: block;
+  margin: 24px auto 32px auto !important;
+  width: 155px;
+  height: 112px;
+  object-fit: contain;
+}
