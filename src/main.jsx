@@ -618,6 +618,15 @@ function AdminPortal(props) {
         {page==="availability" && <AvailabilityAdmin employees={employees} availability={availability} adminAvailEmp={adminAvailEmp} setAdminAvailEmp={setAdminAvailEmp} adminAvailMonth={adminAvailMonth} setAdminAvailMonth={setAdminAvailMonth}/>}
       </main>
     </div>
+
+    <nav className="mobile-admin-nav">
+      <button className={page==="dash" ? "active" : ""} onClick={()=>setPage("dash")}>⌂<span>Dash</span></button>
+      <button className={page==="approvals" ? "active" : ""} onClick={()=>setPage("approvals")}>✓<span>Approve</span></button>
+      <button className={page==="employees" ? "active" : ""} onClick={()=>setPage("employees")}>👥<span>Staff</span></button>
+      <button className={page==="availability" ? "active" : ""} onClick={()=>setPage("availability")}>▣<span>Avail</span></button>
+      <button onClick={exportCsv}>⇩<span>Export</span></button>
+      <button onClick={logout}>↗<span>Out</span></button>
+    </nav>
   </div>;
 }
 
