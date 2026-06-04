@@ -242,7 +242,23 @@ function App() {
     if (s === "rejected") return "Denied";
     return "Pending";
   }
+async function deleteHour(id) {
+  if (!confirm("Remove this shift from the system?")) return;
 
+  const { error } = await supabase
+    .from("hours")
+    .delete()
+    .eq("id", id);
+
+  if (error) {
+    showToast(error.message);
+    return;
+  }
+
+  showToast("Shift removed");
+  await loadAll();
+}
+  
   function shiftPay(h) {
     const emp = employees.find((e) => e.id === h.employee_id);
     return Number(h.total_hours || 0) * Number(emp?.hourly_rate || 0);
@@ -384,6 +400,7 @@ function App() {
         hours={hours}
         availability={availability}
         setStatus={setStatus}
+        deleteHour={deleteHour}
         exportCsv={exportCsv}
         shiftPay={shiftPay}
         editEmp={editEmp}
@@ -582,7 +599,7 @@ function Calendar({ month, setMonth, selectedDates, setSelectedDates, dateKey, c
 }
 
 function AdminPortal(props) {
-  const { toast, logout, page, setPage, employees, allEmployees, hours, availability, setStatus, exportCsv, shiftPay, editEmp, empForm, setEmpForm, startEditEmployee, saveEmployee, removeEmployee, setEditEmp, earnMonth, setEarnMonth, earnYear, setEarnYear, adminAvailEmp, setAdminAvailEmp, adminAvailMonth, setAdminAvailMonth } = props;
+  const { toast, logout, page, setPage, employees, allEmployees, hours, availability, setStatus, deleteHour, exportCsv, shiftPay, editEmp, empForm, setEmpForm, startEditEmployee, saveEmployee, removeEmployee, setEditEmp, earnMonth, setEarnMonth, earnYear, setEarnYear, adminAvailEmp, setAdminAvailEmp, adminAvailMonth, setAdminAvailMonth } = props;
   const pending = hours.filter(h=>h.status==="pending");
   const approved = hours.filter(h=>h.status==="approved");
   const payroll = approved.reduce((a,h)=>a+shiftPay(h),0);
@@ -593,7 +610,25 @@ function AdminPortal(props) {
       <div><b>{employeeMap[h.employee_id]?.full_name || "Employee"}</b><br/><small>{h.date} • {h.start_time}-{h.end_time} • {money(h.total_hours)} hrs • ${money(shiftPay(h))}</small></div>
       <div className={`status ${h.status}`}>{h.status==="rejected" ? "Denied" : h.status[0].toUpperCase()+h.status.slice(1)}</div>
     </div>
-    {h.status === "pending" && <div className="approve-row"><button className="approve" onClick={()=>setStatus(h.id,"approved")}>Approve</button><button className="reject" onClick={()=>setStatus(h.id,"rejected")}>Deny</button></div>}
+   {h.status === "pending" && (
+  <div className="approve-row">
+    <button className="approve" onClick={() => setStatus(h.id, "approved")}>
+      Approve
+    </button>
+
+    <button className="reject" onClick={() => setStatus(h.id, "rejected")}>
+      Deny
+    </button>
+  </div>
+)}
+
+{h.status !== "pending" && (
+  <div className="approve-row">
+    <button className="reject" onClick={() => deleteHour(h.id)}>
+      Remove
+    </button>
+  </div>
+)}
   </div>;
 
   return <div className="admin-layout" style={{display:"block"}}>
