@@ -178,3 +178,38 @@ textarea{min-height:82px;resize:none}
     font-size:22px;
   }
 }
+
+
+/* V17 mobile employee list cleanup */
+@media(max-width:760px){
+  .employee-table .record{
+    display:block !important;
+    padding:18px;
+  }
+
+  .employee-table .record b{
+    display:block;
+    font-size:22px;
+    line-height:1.15;
+    margin-bottom:8px;
+    word-break:break-word;
+  }
+
+  .employee-table .record small{
+    display:block;
+    font-size:15px;
+    line-height:1.35;
+    margin:4px 0;
+    word-break:break-word;
+    overflow-wrap:anywhere;
+  }
+
+  .employee-table .record .ghost-btn{
+    display:block;
+    width:100%;
+    margin-top:14px;
+    text-align:center;
+    padding:13px;
+    font-size:16px;
+  }
+}
