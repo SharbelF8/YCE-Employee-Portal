@@ -585,3 +585,53 @@ body,
     max-width: 900px !important;
   }
 }
+
+/* FINAL layout patch: desktop calendar size, desktop nav spacing, phone white strip */
+
+/* Phone: force bottom area to same dark color */
+@media (max-width: 760px) {
+  html,
+  body,
+  #root {
+    background: #01070a !important;
+    min-height: 100dvh !important;
+  }
+
+  .appframe {
+    min-height: 100dvh !important;
+    height: auto !important;
+    background: linear-gradient(180deg, rgba(3,17,24,.97), rgba(1,7,10,.99)) !important;
+    padding-bottom: 0 !important;
+  }
+
+  .login {
+    min-height: 100dvh !important;
+    background: linear-gradient(180deg, rgba(3,17,24,.97), rgba(1,7,10,.99)) !important;
+  }
+}
+
+/* Desktop: stop bottom tabs from covering buttons */
+@media (min-width: 900px) {
+  .appframe:not(:has(.login)) .page {
+    padding-bottom: 130px !important;
+  }
+
+  .appframe:not(:has(.login)) .nav {
+    bottom: 24px !important;
+  }
+
+  /* Desktop: keep availability calendar normal size */
+  .appframe:not(:has(.login)) .days-grid,
+  .appframe:not(:has(.login)) .weekdays,
+  .appframe:not(:has(.login)) .calendar-head,
+  .appframe:not(:has(.login)) .legend {
+    max-width: 430px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .appframe:not(:has(.login)) .day {
+    max-width: 52px !important;
+    max-height: 52px !important;
+  }
+}
