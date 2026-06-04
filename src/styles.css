@@ -264,7 +264,6 @@ textarea{min-height:82px;resize:none}
       rgba(1,7,10,.99)
     ) !important;
   }
-}
 
   .header {
     margin-top: 0;
@@ -279,9 +278,10 @@ textarea{min-height:82px;resize:none}
     height: calc(100svh - 174px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
   }
 
- .nav {
-  bottom: 0;
-}
+  .nav {
+    bottom: 0;
+  }
+
   .mobile-admin-topbar {
     padding-top: 14px;
   }
