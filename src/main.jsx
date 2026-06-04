@@ -210,9 +210,24 @@ function App() {
   }
 
   async function setStatus(id, status) {
-    const { error } = await supabase.from("hours").update({ status }).eq("id", id);
-    if (error) showToast(error.message);
-    else showToast(status === "approved" ? "Approved" : "Denied");
+    const { data, error } = await supabase
+      .from("hours")
+      .update({ status })
+      .eq("id", id)
+      .select();
+
+    if (error) {
+      showToast(error.message);
+      return;
+    }
+
+    if (!data || data.length === 0) {
+      showToast("No row updated. Check Supabase policies.");
+      return;
+    }
+
+    showToast(status === "approved" ? "Approved" : "Denied");
+    await loadAll();
   }
 
   function statusText(s) {
@@ -654,4 +669,3 @@ function AvailabilityAdmin({ employees, availability, adminAvailEmp, setAdminAva
 }
 
 createRoot(document.getElementById("root")).render(<App />);
-
