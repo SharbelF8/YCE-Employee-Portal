@@ -16,7 +16,8 @@ button{cursor:pointer}
 .hidden{display:none!important}
 #toast{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:99;background:linear-gradient(135deg,var(--gold2),var(--gold));color:#051922;padding:12px 18px;border-radius:999px;font-weight:950;box-shadow:0 14px 35px rgba(0,0,0,.4)}
 .appframe{
-  width:min(440px,100vw);
+  width:100%;
+  max-width:none;
   min-height:100vh;
   height:100vh;
   margin:0 auto;
@@ -331,5 +332,29 @@ textarea{min-height:82px;resize:none}
   .login .card{
     width:420px;
     max-width:420px;
+  }
+}
+
+@media (min-width: 900px) {
+
+  .login{
+    width:100%;
+    max-width:none;
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items:center;
+    gap:120px;
+    padding:80px;
+  }
+
+  .login .logo{
+    width:420px;
+    height:auto;
+  }
+
+  .login .card{
+    width:500px;
+    max-width:500px;
   }
 }
