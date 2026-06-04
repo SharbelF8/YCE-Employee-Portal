@@ -657,3 +657,16 @@ body,
     padding-bottom: 0 !important;
   }
 }
+
+@media (max-width: 760px) {
+  .appframe:not(:has(.admin-main)) .nav {
+    border-bottom: none !important;
+    box-shadow: none !important;
+  }
+
+  .appframe:not(:has(.admin-main)) .nav::before,
+  .appframe:not(:has(.admin-main)) .nav::after {
+    display: none !important;
+    content: none !important;
+  }
+}
