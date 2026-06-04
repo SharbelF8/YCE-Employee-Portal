@@ -424,3 +424,34 @@ body {
     padding-bottom: env(safe-area-inset-bottom) !important;
   }
 }
+
+/* Final launch-screen / first-load bottom fix */
+html,
+body,
+#root {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  min-height: 100dvh !important;
+  height: 100dvh !important;
+  background: linear-gradient(
+    180deg,
+    rgba(3,17,24,.97),
+    rgba(1,7,10,.99)
+  ) !important;
+}
+
+#root > .appframe {
+  min-height: 100dvh !important;
+  height: 100dvh !important;
+  background: linear-gradient(
+    180deg,
+    rgba(3,17,24,.97),
+    rgba(1,7,10,.99)
+  ) !important;
+}
+
+#root > .appframe .login {
+  min-height: 100dvh !important;
+  height: 100dvh !important;
+}
