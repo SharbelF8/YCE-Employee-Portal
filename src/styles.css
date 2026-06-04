@@ -369,3 +369,34 @@ body,
     height: 100dvh !important;
   }
 }
+
+/* Prevent white background during scroll/overscroll */
+html,
+body,
+#root {
+  background: linear-gradient(
+    180deg,
+    rgba(3,17,24,.97),
+    rgba(1,7,10,.99)
+  ) !important;
+  min-height: 100%;
+  overscroll-behavior: none;
+}
+
+body {
+  margin: 0;
+}
+
+/* Final mobile admin topbar safe-area fix */
+@media (max-width: 760px) {
+  .mobile-admin-topbar {
+    top: 0;
+    padding-top: calc(44px + env(safe-area-inset-top));
+    padding-bottom: 10px;
+    z-index: 9999;
+  }
+
+  .admin-main {
+    padding-top: calc(135px + env(safe-area-inset-top)) !important;
+  }
+}
