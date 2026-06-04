@@ -274,7 +274,7 @@ textarea{min-height:82px;resize:none}
   }
 
  .nav {
-  bottom: 0px;
+  bottom: 0;
 }
   .mobile-admin-topbar {
     padding-top: max(14px, env(safe-area-inset-top));
