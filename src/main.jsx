@@ -237,28 +237,35 @@ function App() {
     await loadAll();
   }
 
+  async function deleteHour(id) {
+    if (!confirm("Remove this shift from the system?")) return;
+
+    const { data, error } = await supabase
+      .from("hours")
+      .delete()
+      .eq("id", id)
+      .select();
+
+    if (error) {
+      showToast(error.message);
+      return;
+    }
+
+    if (!data || data.length === 0) {
+      showToast("No shift removed. Check Supabase policies.");
+      return;
+    }
+
+    showToast("Shift removed");
+    await loadAll();
+  }
+
   function statusText(s) {
     if (s === "approved") return "Approved";
     if (s === "rejected") return "Denied";
     return "Pending";
   }
-async function deleteHour(id) {
-  if (!confirm("Remove this shift from the system?")) return;
 
-  const { error } = await supabase
-    .from("hours")
-    .delete()
-    .eq("id", id);
-
-  if (error) {
-    showToast(error.message);
-    return;
-  }
-
-  showToast("Shift removed");
-  await loadAll();
-}
-  
   function shiftPay(h) {
     const emp = employees.find((e) => e.id === h.employee_id);
     return Number(h.total_hours || 0) * Number(emp?.hourly_rate || 0);
@@ -266,6 +273,7 @@ async function deleteHour(id) {
 
   async function saveEmployee() {
     if (!empForm.full_name.trim()) return showToast("Employee name required");
+
     const payload = {
       full_name: empForm.full_name.trim(),
       role: empForm.role || "",
@@ -276,16 +284,35 @@ async function deleteHour(id) {
       is_admin: false,
       active: true,
     };
+
+    let result;
     if (editEmp) {
-      await supabase.from("employees").update(payload).eq("id", editEmp.id);
-      showToast("Employee updated");
+      result = await supabase
+        .from("employees")
+        .update(payload)
+        .eq("id", editEmp.id)
+        .select();
     } else {
-      await supabase.from("employees").insert(payload);
-      showToast("Employee added");
+      result = await supabase
+        .from("employees")
+        .insert(payload)
+        .select();
     }
+
+    if (result.error) {
+      showToast(result.error.message);
+      return;
+    }
+
+    if (!result.data || result.data.length === 0) {
+      showToast("Employee not saved. Check Supabase policies.");
+      return;
+    }
+
+    showToast(editEmp ? "Employee updated" : "Employee added");
     setEditEmp(null);
     setEmpForm({ full_name: "", role: "", hourly_rate: "", email: "", phone: "", password: "" });
-    loadAll();
+    await loadAll();
   }
 
   function startEditEmployee(emp) {
@@ -610,25 +637,8 @@ function AdminPortal(props) {
       <div><b>{employeeMap[h.employee_id]?.full_name || "Employee"}</b><br/><small>{h.date} • {h.start_time}-{h.end_time} • {money(h.total_hours)} hrs • ${money(shiftPay(h))}</small></div>
       <div className={`status ${h.status}`}>{h.status==="rejected" ? "Denied" : h.status[0].toUpperCase()+h.status.slice(1)}</div>
     </div>
-   {h.status === "pending" && (
-  <div className="approve-row">
-    <button className="approve" onClick={() => setStatus(h.id, "approved")}>
-      Approve
-    </button>
-
-    <button className="reject" onClick={() => setStatus(h.id, "rejected")}>
-      Deny
-    </button>
-  </div>
-)}
-
-{h.status !== "pending" && (
-  <div className="approve-row">
-    <button className="reject" onClick={() => deleteHour(h.id)}>
-      Remove
-    </button>
-  </div>
-)}
+    {h.status === "pending" && <div className="approve-row"><button className="approve" onClick={()=>setStatus(h.id,"approved")}>Approve</button><button className="reject" onClick={()=>setStatus(h.id,"rejected")}>Deny</button></div>}
+    {h.status !== "pending" && <div className="approve-row"><button className="reject" onClick={()=>deleteHour(h.id)}>Remove</button></div>}
   </div>;
 
   return <div className="admin-layout" style={{display:"block"}}>
