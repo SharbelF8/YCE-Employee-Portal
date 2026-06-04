@@ -635,3 +635,25 @@ body,
     max-height: 52px !important;
   }
 }
+
+/* Employee phone only: island spacing + remove blue block behind bottom tabs */
+@media (max-width: 760px) {
+  .appframe:not(:has(.admin-main)) .header {
+    margin-top: env(safe-area-inset-top) !important;
+  }
+
+  .appframe:not(:has(.admin-main)) .page {
+    padding-top: 24px !important;
+  }
+
+  .appframe:not(:has(.admin-main)) .nav {
+    background: rgba(1,7,10,.96) !important;
+    backdrop-filter: blur(18px);
+    bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .appframe:not(:has(.admin-main)) {
+    padding-bottom: 0 !important;
+  }
+}
