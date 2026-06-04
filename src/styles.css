@@ -255,9 +255,9 @@ textarea{min-height:82px;resize:none}
 @media (max-width: 760px) {
   .appframe {
     padding-top: 18px;
-    padding-bottom: 0;
+    padding-bottom: env(safe-area-inset-bottom);
+    box-sizing: border-box;
     min-height: 100dvh;
-    height: 100dvh;
     background: linear-gradient(
       180deg,
       rgba(3,17,24,.97),
@@ -454,4 +454,10 @@ body,
 #root > .appframe .login {
   min-height: 100dvh !important;
   height: 100dvh !important;
+}
+
+html,
+body,
+#root {
+  background: #01070a !important;
 }
