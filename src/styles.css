@@ -318,3 +318,13 @@ textarea{min-height:82px;resize:none}
     margin: 0;
   }
 }
+
+/* Make login background fill full phone height */
+.login {
+  min-height: 100svh;
+  background: linear-gradient(
+    180deg,
+    rgba(3,17,24,.97),
+    rgba(1,7,10,.99)
+  );
+}
