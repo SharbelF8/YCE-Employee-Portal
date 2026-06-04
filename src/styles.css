@@ -226,7 +226,7 @@ textarea{min-height:82px;resize:none}
 }
 @media (max-width: 760px) {
   .mobile-admin-topbar {
-    padding-top: max(12px, env(safe-area-inset-top));
+    padding-top: 12px;
     padding-bottom: 10px;
   }
 
@@ -254,7 +254,7 @@ textarea{min-height:82px;resize:none}
 /* Phone safe-area fix for employee + admin screens */
 @media (max-width: 760px) {
   .appframe {
-    padding-top: max(18px, env(safe-area-inset-top));
+    padding-top: 18px;
     padding-bottom: 0;
     min-height: 100dvh;
     height: 100dvh;
@@ -271,8 +271,8 @@ textarea{min-height:82px;resize:none}
   }
 
   .login {
-    padding-top: max(40px, env(safe-area-inset-top));
-    padding-bottom: max(40px, env(safe-area-inset-bottom));
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
 
   .page {
@@ -283,7 +283,7 @@ textarea{min-height:82px;resize:none}
   bottom: 0;
 }
   .mobile-admin-topbar {
-    padding-top: max(14px, env(safe-area-inset-top));
+    padding-top: 14px;
   }
 
   .admin-main {
