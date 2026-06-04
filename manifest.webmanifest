@@ -1,0 +1,25 @@
+{
+  "name": "YCE Employee Portal",
+  "short_name": "YCE Portal",
+  "description": "YCE employee hours, availability, approvals, and payroll portal.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#020b10",
+  "theme_color": "#d8a044",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
