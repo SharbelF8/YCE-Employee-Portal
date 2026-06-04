@@ -400,3 +400,27 @@ body {
     padding-top: calc(135px + env(safe-area-inset-top)) !important;
   }
 }
+
+/* Final iPhone bottom white strip fix */
+@media (max-width: 760px) {
+  html,
+  body,
+  #root,
+  .appframe,
+  .login {
+    min-height: 100dvh !important;
+    background: linear-gradient(
+      180deg,
+      rgba(3,17,24,.97),
+      rgba(1,7,10,.99)
+    ) !important;
+  }
+
+  .login {
+    padding-bottom: 0 !important;
+  }
+
+  .appframe {
+    padding-bottom: env(safe-area-inset-bottom) !important;
+  }
+}
