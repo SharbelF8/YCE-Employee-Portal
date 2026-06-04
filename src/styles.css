@@ -96,51 +96,85 @@ textarea{min-height:82px;resize:none}
 }
 
 
-.mobile-admin-nav{
+.mobile-admin-nav{display:none}
+
+
+
+
+/* V16 clean mobile admin navigation */
+.mobile-admin-topbar{
   display:none;
 }
 
 @media(max-width:760px){
-  .admin-main{
-    padding-bottom:96px;
+  .admin-layout{
+    min-height:100vh;
+    background:
+      radial-gradient(circle at 12% 0%,rgba(216,160,68,.18),transparent 28%),
+      radial-gradient(circle at 88% 5%,rgba(12,79,102,.5),transparent 35%),
+      linear-gradient(140deg,#010609,var(--navy));
   }
 
-  .mobile-admin-nav{
+  .admin-main{
+    height:auto;
+    min-height:100vh;
+    padding:78px 14px 24px;
+  }
+
+  .mobile-admin-topbar{
+    display:flex;
     position:fixed;
+    top:0;
     left:0;
     right:0;
-    bottom:0;
-    height:82px;
+    z-index:100;
+    gap:7px;
+    padding:12px 10px 10px;
+    overflow-x:auto;
     background:rgba(1,7,10,.96);
     backdrop-filter:blur(18px);
-    border-top:1px solid rgba(216,160,68,.18);
-    display:flex;
-    justify-content:space-around;
-    align-items:center;
-    padding:8px 5px;
-    z-index:50;
+    border-bottom:1px solid rgba(216,160,68,.22);
+    -webkit-overflow-scrolling:touch;
   }
 
-  .mobile-admin-nav button{
-    border:0;
-    background:transparent;
-    color:#8aa0a8;
-    border-radius:16px;
-    min-width:50px;
-    padding:7px 4px;
-    font-size:18px;
+  .mobile-admin-topbar::-webkit-scrollbar{
+    display:none;
+  }
+
+  .mobile-admin-topbar button{
+    flex:0 0 auto;
+    border:1px solid rgba(216,160,68,.24);
+    background:rgba(216,160,68,.08);
+    color:var(--muted);
+    border-radius:999px;
+    padding:10px 13px;
+    font-size:13px;
     font-weight:900;
+    line-height:1;
+    white-space:nowrap;
+    box-shadow:none;
   }
 
-  .mobile-admin-nav button span{
-    display:block;
-    font-size:9px;
-    font-weight:850;
-    margin-top:2px;
+  .mobile-admin-topbar button.active{
+    background:linear-gradient(135deg,var(--gold2),var(--gold));
+    color:#061922;
+    border-color:transparent;
   }
 
-  .mobile-admin-nav button.active{
-    background:rgba(216,160,68,.16);
-    color:var(--gold2);
+  .admin-main h1{
+    font-size:32px;
+    margin:0 0 16px;
+  }
+
+  .admin-card{
+    padding:15px;
+  }
+
+  .card{
+    border-radius:22px;
+  }
+
+  .card h3{
+    font-size:22px;
   }
 }
