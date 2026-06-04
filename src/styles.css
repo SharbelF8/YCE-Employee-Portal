@@ -285,3 +285,35 @@ textarea{min-height:82px;resize:none}
     padding-bottom: max(32px, env(safe-area-inset-bottom));
   }
 }
+
+/* Desktop login page only */
+@media (min-width: 900px) {
+  .appframe:has(.login) {
+    width: min(1200px, 100vw);
+  }
+
+  .login {
+    display: grid;
+    grid-template-columns: 1.1fr 420px;
+    align-items: center;
+    gap: 80px;
+    padding: 80px;
+  }
+
+  .login .logo {
+    width: 420px;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .login h1 {
+    font-size: 34px;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+
+  .login .card {
+    width: 420px;
+    max-width: 420px;
+  }
+}
