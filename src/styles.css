@@ -94,3 +94,53 @@ textarea{min-height:82px;resize:none}
   .admin-cols{grid-template-columns:1fr}
   .employee-table .record{display:block}
 }
+
+
+.mobile-admin-nav{
+  display:none;
+}
+
+@media(max-width:760px){
+  .admin-main{
+    padding-bottom:96px;
+  }
+
+  .mobile-admin-nav{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    height:82px;
+    background:rgba(1,7,10,.96);
+    backdrop-filter:blur(18px);
+    border-top:1px solid rgba(216,160,68,.18);
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    padding:8px 5px;
+    z-index:50;
+  }
+
+  .mobile-admin-nav button{
+    border:0;
+    background:transparent;
+    color:#8aa0a8;
+    border-radius:16px;
+    min-width:50px;
+    padding:7px 4px;
+    font-size:18px;
+    font-weight:900;
+  }
+
+  .mobile-admin-nav button span{
+    display:block;
+    font-size:9px;
+    font-weight:850;
+    margin-top:2px;
+  }
+
+  .mobile-admin-nav button.active{
+    background:rgba(216,160,68,.16);
+    color:var(--gold2);
+  }
+}
