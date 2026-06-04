@@ -619,13 +619,13 @@ function AdminPortal(props) {
       </main>
     </div>
 
-    <nav className="mobile-admin-nav">
-      <button className={page==="dash" ? "active" : ""} onClick={()=>setPage("dash")}>⌂<span>Dash</span></button>
-      <button className={page==="approvals" ? "active" : ""} onClick={()=>setPage("approvals")}>✓<span>Approve</span></button>
-      <button className={page==="employees" ? "active" : ""} onClick={()=>setPage("employees")}>👥<span>Staff</span></button>
-      <button className={page==="availability" ? "active" : ""} onClick={()=>setPage("availability")}>▣<span>Avail</span></button>
-      <button onClick={exportCsv}>⇩<span>Export</span></button>
-      <button onClick={logout}>↗<span>Out</span></button>
+    <nav className="mobile-admin-topbar">
+      <button className={page==="dash" ? "active" : ""} onClick={()=>setPage("dash")}>Dashboard</button>
+      <button className={page==="approvals" ? "active" : ""} onClick={()=>setPage("approvals")}>Approvals</button>
+      <button className={page==="employees" ? "active" : ""} onClick={()=>setPage("employees")}>Employees</button>
+      <button className={page==="availability" ? "active" : ""} onClick={()=>setPage("availability")}>Availability</button>
+      <button onClick={exportCsv}>Export</button>
+      <button onClick={logout}>Logout</button>
     </nav>
   </div>;
 }
