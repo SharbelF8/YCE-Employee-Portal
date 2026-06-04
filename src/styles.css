@@ -461,3 +461,65 @@ body,
 #root {
   background: #01070a !important;
 }
+
+/* FINAL FIXES: toast safe-area, desktop background, desktop employee layout */
+
+/* 1) Move incorrect-password toast below Dynamic Island/notch */
+#toast {
+  top: calc(60px + env(safe-area-inset-top)) !important;
+  z-index: 99999 !important;
+}
+
+/* 2) Keep desktop/login background blue, not black */
+html,
+body,
+#root {
+  background:
+    radial-gradient(circle at 12% 0%, rgba(216,160,68,.18), transparent 28%),
+    radial-gradient(circle at 88% 5%, rgba(12,79,102,.5), transparent 35%),
+    linear-gradient(140deg, #010609, #061f2b) !important;
+}
+
+/* 3) Desktop employee portal should not look like a phone */
+@media (min-width: 900px) {
+  .appframe:not(:has(.login)) {
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 100dvh !important;
+    margin: 0 !important;
+    border-left: none !important;
+    border-right: none !important;
+  }
+
+  .appframe:not(:has(.login)) .page {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    height: calc(100dvh - 92px) !important;
+    padding: 28px !important;
+  }
+
+  .appframe:not(:has(.login)) .header {
+    max-width: none !important;
+    padding-left: 48px !important;
+    padding-right: 48px !important;
+  }
+
+  .appframe:not(:has(.login)) .nav {
+    position: fixed !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    bottom: 24px !important;
+    width: min(620px, calc(100vw - 48px)) !important;
+    border-radius: 26px !important;
+  }
+
+  .appframe:not(:has(.login)) .stats,
+  .appframe:not(:has(.login)) .actions {
+    max-width: 900px !important;
+  }
+
+  .appframe:not(:has(.login)) .card {
+    max-width: 900px !important;
+  }
+}
